@@ -1,16 +1,97 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <h1>Reporte de errores</h1>
+
+  <form action="">
+    <h2>Información de contacto</h2>
+    <label for="empresa">Nombre de la empresa</label>
+    <input type="text" name="empresa" id="" />
+
+    <label for="contacto">Nombre del contacto</label>
+    <input type="text" name="contacto" id="" />
+
+    <label for="correo">Correo electrónico</label>
+    <input type="text" name="correo" id="" />
+
+    <label for="telefono">Teléfono</label>
+    <input type="text" name="telefono" id="" />
+
+    <label for="descripcion">Descripción del problema</label>
+    <textarea name="descripcion" id=""></textarea>
+
+    <label for="fecha">Fecha del error</label>
+    <input type="text" name="fecha" id="" />
+
+    <label for="hora">Hora del error</label>
+    <input type="text" name="hora" id="" />
+
+    <label for="detalle">Descripción detallada del problema</label>
+    <textarea name="detalle" id=""></textarea>
+
+    <label for="capturas">Capturas de pantalla</label>
+    <input type="text" name="capturas" id="" />
+
+    <h2>Información técnica</h2>
+    <label for="SO">Sistema operativo</label>
+    <select name="SO" id="">
+      <option value="windows">Windows</option>
+      <option value="mac">Mac</option>
+      <option value="linux">Linux</option>
+      <option value="ios">iOS</option>
+      <option value="android">Android</option>
+    </select>
+
+    <h3>Sistema operativo</h3>
+
+    <input type="radio" value="windows" checked="" name="theme" id="theme-auto" />
+    <label for="theme-auto">Windows</label>
+    <input type="radio" value="mac" name="theme" id="theme-dark" />
+    <label for="theme-dark">Mac</label>
+    <input type="radio" value="linux" name="theme" id="theme-light" />
+    <label for="theme-light">Linux ☀</label>
+    <select name="navegador" id="">
+      <option value="chrome">Google Chrome</option>
+      <option value="safari">sSfari</option>
+      <option value="edge">Microsoft Edge</option>
+      <option value="firefox">Firefox</option>
+      <option value="otro">Otro</option>
+    </select>
+
+    <label for="dispositivo">Dispositivo</label>
+    <select name="dispositivo" id="">
+      <option value="desktop">Desktop</option>
+      <option value="tablet">Tablet</option>
+      <option value="celular">Celular</option>
+    </select>
+
+    <label for="impacto">Impacto del problema</label>
+    <small
+      >Describe cómo está afectando este problema a tu negocio o a tus
+      operaciones diarias.</small
+    >
+    <textarea name="impacto" id=""></textarea>
+
+    <label for="solucion">Intento de solución</label>
+    <small
+      >Describe cualquier paso que ya hayas tomado para intentar resolver el
+      problema.</small
+    >
+    <textarea name="solucion" id=""></textarea>
+
+    <label for="prioridad">Prioridad del problelma</label>
+    <select name="prioridad" id="">
+      <option value="baja">Baja</option>
+      <option value="media">Media</option>
+      <option value="alta">Alta</option>
+    </select>
+
+    <label for="solucion">Información adicional</label>
+    <small>
+      Cualquier otra información que creas que puede ser relevante.</small
+    >
+    <input type="text" name="solucion" id="" />
+  </form>
+</Layout>
