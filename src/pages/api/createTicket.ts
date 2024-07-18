@@ -114,13 +114,13 @@ export async function POST(context: APIContext): Promise<Response> {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${slackToken}`,
+            'Authorization': `Bearer ${slack_token}`,
         },
         body: JSON.stringify({
             files: [{
                 id: uploadResponseBody.file.id,
                 title: 'Imagen del Ticket',
-                channels: '#ticket-reports', // Reemplaza con el ID de tu canal
+                channels: '#ticket-reports',
             }],
         }),
     });
@@ -136,7 +136,7 @@ export async function POST(context: APIContext): Promise<Response> {
         attachments: [
             {
                 text: "Imagen adjunta",
-                image_url: completeUploadResult.files[0].url_private, // URL de la imagen subida
+                image_url: completeUploadResult.files[0].url_private,
                 title: "Imagen del Ticket",
             },
         ],
