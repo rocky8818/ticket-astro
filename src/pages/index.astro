@@ -3,111 +3,63 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <h1>Reporte de errores</h1>
 
-  <form action="/api/createTicket" method="post">
-    <h2>Información de contacto</h2>
-    <label for="empresa">Nombre de la empresa</label>
-    <input type="text" name="empresa" id="empresa" />
-
-    <label for="contacto">Nombre del contacto</label>
-    <input type="text" name="contacto" id="contacto" />
-
-    <label for="correo">Correo electrónico</label>
-    <input type="text" name="correo" id="correo" />
-
-    <label for="telefono">Teléfono</label>
-    <input type="text" name="telefono" id="telefono" />
-
-    <label for="descripcion">Descripción del problema</label>
-    <textarea name="descripcion" id="descripcion"></textarea>
-
-    <label for="fecha">Fecha del error</label>
-    <input type="text" name="fecha" id="fecha" />
-
-    <label for="hora">Hora del error</label>
-    <input type="text" name="hora" id="hora" />
-
-    <label for="detalle">Descripción detallada del problema</label>
-    <textarea name="detalle" id="detalle"></textarea>
-
-    <label for="capturas">Capturas de pantalla</label>
-    <input type="text" name="capturas" id="capturas" />
-
-    <h2>Información técnica</h2>
-
-    <h3>Sistema operativo</h3>
-
-    <input type="radio" value="windows" checked="true" name="os" id="windows" />
-    <label for="windows">Windows</label>
-    <input type="radio" value="mac" name="os" id="mac" />
-    <label for="mac">Mac</label>
-    <input type="radio" value="linux" name="os" id="linux" />
-    <label for="linux">Linux</label>
-    <input type="radio" value="ios" name="os" id="ios" />
-    <label for="ios">iOS</label>
-    <input type="radio" value="android" name="os" id="android" />
-    <label for="android">Android</label>
-    <input type="radio" value="na" name="os" id="na" />
-    <label for="na">No aplica</label>
-
-    <h3>Navegador</h3>
-
-    <input type="radio" value="chrome" checked="true" name="navegador" id="chrome" />
-    <label for="chrome">Google Chrome</label>
-    <input type="radio" value="safari" name="navegador" id="safari" />
-    <label for="safari">Safari</label>
-    <input type="radio" value="edge" name="navegador" id="edge" />
-    <label for="edge">Microsoft Edge</label>
-    <input type="radio" value="firefox" name="navegador" id="firefox" />
-    <label for="firefox">Firefox</label>
-    <input type="radio" value="otro" name="navegador" id="otroNav" />
-    <label for="otroNav">Otro</label>
-    <input type="radio" value="na" name="navegador" id="naNav" />
-    <label for="naNav">No aplica</label>
-
-    <h3>Tipo de dispositivo</h3>
-
-    <input type="radio" value="desktop" checked="true" name="dispositivo" id="desktop" />
-    <label for="desktop">Desktop</label>
-    <input type="radio" value="tablet" name="dispositivo" id="tablet" />
-    <label for="tablet">Tablet</label>
-    <input type="radio" value="celular" name="dispositivo" id="celular" />
-    <label for="celular">Celular</label>
-    <input type="radio" value="otro" name="dispositivo" id="otroDis" />
-    <label for="otroDis">Otro</label>
-    <input type="radio" value="otro" name="dispositivo" id="naDis" />
-    <label for="naDis">No aplica</label>
-
-
-    <h3>Impacto del problema</h3>
-    <label for="impacto"
-      >Describe cómo está afectando este problema a tu negocio o a tus
-      operaciones diarias.</label
-    >
-    <textarea name="impacto" id=""></textarea>
-
-    <label for="solucion">Intento de solución</label>
-    <small
-      >Describe cualquier paso que ya hayas tomado para intentar resolver el
-      problema.</small
-    >
-    <textarea name="solucion" id=""></textarea>
-
-    <h3>Prioridad del problema</h3>
-    <input type="radio" value="baja" checked="" name="prioridad" id="baja" />
-    <label for="baja">Baja</label>
-    <input type="radio" value="media" name="prioridad" id="media" />
-    <label for="media">Media</label>
-    <input type="radio" value="alta" name="prioridad" id="alta" />
-    <label for="alta">Alta</label>
-
-    <h3>Información adicional</h3>
-    <label for="adicional">
-      Cualquier otra información que creas que puede ser relevante.</label
-    >
-    <textarea  name="adicional" id="adicional"></textarea>
-
-    <button type="submit">Enviar</button>
-  </form>
+  <div class="topContainer">
+    <h1>Bienvenido a reportes CID</h1>
+  
+  </div>
+  
+  <div class="midleContainer">
+    <a href="">
+      <div class="prevTicket">
+        <h3>Usar un ticket previo</h3>
+        <p>Si ya tienes un número de ticket y quieres complementar el problema anterior. Genera una orden con el mismo número.</p>
+      </div>
+  
+    </a>
+    <a href="">
+      <div class="newTicket">
+        <h3>Registra un nuevo reporte</h3>
+        <p>Al registrar un reporte nuestro equipo adquiere la información necesaria para atender tu problema con mayor solvencia.</p>
+      </div>
+    </a>
+  </div>
 </Layout>
+  
+
+
+<style>
+
+  a{
+    text-decoration: none;
+  }
+  .topContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .midleContainer{
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .prevTicket{
+    height: 350px;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .newTicket{
+    height: 350px;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+</style>

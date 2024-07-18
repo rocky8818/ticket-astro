@@ -3,7 +3,7 @@ import { column, defineDb, defineTable } from 'astro:db';
 const tickets = defineTable({
   columns:{
     _id: column.number({ primaryKey: true}),
-    ticketNumber: column.number(),
+    ticketNumber: column.text(),
     resumen: column.text(),
     ticketInfo: column.json(),
   }

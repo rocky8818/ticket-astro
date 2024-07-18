@@ -1,6 +1,6 @@
 export interface ticket {
     _id?: number;
-    ticketNumber: number;
+    ticketNumber: string;
     resumen: string;
     ticketInfo: any;
   }
