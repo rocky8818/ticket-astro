@@ -5,72 +5,85 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <h1>Reporte de errores</h1>
 
-  <form action="">
+  <form action="/api/createTicket" method="post">
     <h2>Información de contacto</h2>
     <label for="empresa">Nombre de la empresa</label>
-    <input type="text" name="empresa" id="" />
+    <input type="text" name="empresa" id="empresa" />
 
     <label for="contacto">Nombre del contacto</label>
-    <input type="text" name="contacto" id="" />
+    <input type="text" name="contacto" id="contacto" />
 
     <label for="correo">Correo electrónico</label>
-    <input type="text" name="correo" id="" />
+    <input type="text" name="correo" id="correo" />
 
     <label for="telefono">Teléfono</label>
-    <input type="text" name="telefono" id="" />
+    <input type="text" name="telefono" id="telefono" />
 
     <label for="descripcion">Descripción del problema</label>
-    <textarea name="descripcion" id=""></textarea>
+    <textarea name="descripcion" id="descripcion"></textarea>
 
     <label for="fecha">Fecha del error</label>
-    <input type="text" name="fecha" id="" />
+    <input type="text" name="fecha" id="fecha" />
 
     <label for="hora">Hora del error</label>
-    <input type="text" name="hora" id="" />
+    <input type="text" name="hora" id="hora" />
 
     <label for="detalle">Descripción detallada del problema</label>
-    <textarea name="detalle" id=""></textarea>
+    <textarea name="detalle" id="detalle"></textarea>
 
     <label for="capturas">Capturas de pantalla</label>
-    <input type="text" name="capturas" id="" />
+    <input type="text" name="capturas" id="capturas" />
 
     <h2>Información técnica</h2>
-    <label for="SO">Sistema operativo</label>
-    <select name="SO" id="">
-      <option value="windows">Windows</option>
-      <option value="mac">Mac</option>
-      <option value="linux">Linux</option>
-      <option value="ios">iOS</option>
-      <option value="android">Android</option>
-    </select>
 
     <h3>Sistema operativo</h3>
 
-    <input type="radio" value="windows" checked="" name="theme" id="theme-auto" />
-    <label for="theme-auto">Windows</label>
-    <input type="radio" value="mac" name="theme" id="theme-dark" />
-    <label for="theme-dark">Mac</label>
-    <input type="radio" value="linux" name="theme" id="theme-light" />
-    <label for="theme-light">Linux ☀</label>
-    <select name="navegador" id="">
-      <option value="chrome">Google Chrome</option>
-      <option value="safari">sSfari</option>
-      <option value="edge">Microsoft Edge</option>
-      <option value="firefox">Firefox</option>
-      <option value="otro">Otro</option>
-    </select>
+    <input type="radio" value="windows" checked="true" name="os" id="windows" />
+    <label for="windows">Windows</label>
+    <input type="radio" value="mac" name="os" id="mac" />
+    <label for="mac">Mac</label>
+    <input type="radio" value="linux" name="os" id="linux" />
+    <label for="linux">Linux</label>
+    <input type="radio" value="ios" name="os" id="ios" />
+    <label for="ios">iOS</label>
+    <input type="radio" value="android" name="os" id="android" />
+    <label for="android">Android</label>
+    <input type="radio" value="na" name="os" id="na" />
+    <label for="na">No aplica</label>
 
-    <label for="dispositivo">Dispositivo</label>
-    <select name="dispositivo" id="">
-      <option value="desktop">Desktop</option>
-      <option value="tablet">Tablet</option>
-      <option value="celular">Celular</option>
-    </select>
+    <h3>Navegador</h3>
 
-    <label for="impacto">Impacto del problema</label>
-    <small
+    <input type="radio" value="chrome" checked="true" name="navegador" id="chrome" />
+    <label for="chrome">Google Chrome</label>
+    <input type="radio" value="safari" name="navegador" id="safari" />
+    <label for="safari">Safari</label>
+    <input type="radio" value="edge" name="navegador" id="edge" />
+    <label for="edge">Microsoft Edge</label>
+    <input type="radio" value="firefox" name="navegador" id="firefox" />
+    <label for="firefox">Firefox</label>
+    <input type="radio" value="otro" name="navegador" id="otroNav" />
+    <label for="otroNav">Otro</label>
+    <input type="radio" value="na" name="navegador" id="naNav" />
+    <label for="naNav">No aplica</label>
+
+    <h3>Tipo de dispositivo</h3>
+
+    <input type="radio" value="desktop" checked="true" name="dispositivo" id="desktop" />
+    <label for="desktop">Desktop</label>
+    <input type="radio" value="tablet" name="dispositivo" id="tablet" />
+    <label for="tablet">Tablet</label>
+    <input type="radio" value="celular" name="dispositivo" id="celular" />
+    <label for="celular">Celular</label>
+    <input type="radio" value="otro" name="dispositivo" id="otroDis" />
+    <label for="otroDis">Otro</label>
+    <input type="radio" value="otro" name="dispositivo" id="naDis" />
+    <label for="naDis">No aplica</label>
+
+
+    <h3>Impacto del problema</h3>
+    <label for="impacto"
       >Describe cómo está afectando este problema a tu negocio o a tus
-      operaciones diarias.</small
+      operaciones diarias.</label
     >
     <textarea name="impacto" id=""></textarea>
 
@@ -81,17 +94,20 @@ import Layout from "../layouts/Layout.astro";
     >
     <textarea name="solucion" id=""></textarea>
 
-    <label for="prioridad">Prioridad del problelma</label>
-    <select name="prioridad" id="">
-      <option value="baja">Baja</option>
-      <option value="media">Media</option>
-      <option value="alta">Alta</option>
-    </select>
+    <h3>Prioridad del problema</h3>
+    <input type="radio" value="baja" checked="" name="prioridad" id="baja" />
+    <label for="baja">Baja</label>
+    <input type="radio" value="media" name="prioridad" id="media" />
+    <label for="media">Media</label>
+    <input type="radio" value="alta" name="prioridad" id="alta" />
+    <label for="alta">Alta</label>
 
-    <label for="solucion">Información adicional</label>
-    <small>
-      Cualquier otra información que creas que puede ser relevante.</small
+    <h3>Información adicional</h3>
+    <label for="adicional">
+      Cualquier otra información que creas que puede ser relevante.</label
     >
-    <input type="text" name="solucion" id="" />
+    <textarea  name="adicional" id="adicional"></textarea>
+
+    <button type="submit">Enviar</button>
   </form>
 </Layout>

@@ -1,0 +1,12 @@
+---
+import {tickets, db} from "astro:db";
+
+const allTickets = await db.select().from(tickets);
+---
+
+{
+    allTickets.map((ticket) => (
+        <h1>{ticket.ticketNumber}</h1>
+        <p>{ticket.resumen}</p>
+    ))
+}
