@@ -74,40 +74,41 @@ export async function POST(context: APIContext): Promise<Response> {
     const imageFilename = (imagen as File).name;
     const imageSize = (imagen as File).size;
     console.log(imageSize, imageFilename)
-
+    const form = new FormData();
+    form.append('filename', imageFilename);
+    form.append('length', imageSize.toString());
+    
     const uploadUrlResponse = await fetch('https://slack.com/api/files.getUploadURLExternal', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${slack_token}`,
         },
-        body: JSON.stringify({
-            filename: imageFilename,
-            length: imageSize,
-        }),
+        body: form,
     });
-
+    
+    
     const uploadUrlResult = await uploadUrlResponse.json();
     if (!uploadUrlResult.ok) {
         throw new Error('Error getting upload URL from Slack: ' + uploadUrlResult.error);
     }
-
+    
     const uploadUrl = uploadUrlResult.upload_url;
 
+    
     // Subir la imagen a Slack
     const uploadResponse = await fetch(uploadUrl, {
         method: 'POST',
         headers: {
-            'Content-Type': imagen.type,
+            'Content-Type': (imagen as File).type,
         },
         body: imagen,
     });
-
+    
     if (!uploadResponse.ok) {
         throw new Error('Error uploading image to Slack: ' + uploadResponse.statusText);
     }
-
-    const uploadResponseBody = await uploadResponse.json();
+    
+    console.log(uploadUrlResult)
 
     // Completar la carga de la imagen en Slack
     const completeUploadResponse = await fetch('https://slack.com/api/files.completeUploadExternal', {
@@ -118,10 +119,10 @@ export async function POST(context: APIContext): Promise<Response> {
         },
         body: JSON.stringify({
             files: [{
-                id: uploadResponseBody.file.id,
+                id: uploadUrlResult.file_id,
                 title: 'Imagen del Ticket',
-                channels: '#ticket-reports',
             }],
+            channel_id: 'C07CQT29NCW'
         }),
     });
 
@@ -132,7 +133,7 @@ export async function POST(context: APIContext): Promise<Response> {
 
     // Enviar mensaje a Slack con la imagen
     const slackMessage = {
-        text: `Nuevo ticket creado:\n\n${resumen}`,
+        text: `Nuevo ticket creado ${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}:\n\n${resumen}`,
         attachments: [
             {
                 text: "Imagen adjunta",
