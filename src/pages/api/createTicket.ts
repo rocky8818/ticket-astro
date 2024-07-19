@@ -58,7 +58,7 @@ export async function POST(context: APIContext): Promise<Response> {
         empresa, contacto, correo, telefono, descripcion, fecha, hora, detalle, os, navegador, dispositivo, impacto, solucion, prioridad, adicional
     }
 
-    const resumen = `Prioridad ${prioridad}. ${contacto} de ${empresa} tiene el problema ${descripcion}, presentado en ${fecha} a las ${hora} el problema se presentó en ${dispositivo} usando el navegador ${navegador} usando el sistema operativo de ${os}. El problema presenta el siguiente impacto: ${impacto}, con intento de solucion ${solucion}. El usuario dejó la siguiente información. Detalle del problema ${detalle}. Información adicional ${adicional}. Datos del cliente tel:${telefono} y correo ${correo}.`
+    const resumen = `\n*Prioridad*: ${prioridad}\n*Contacto*: ${contacto} de ${empresa}\n*Descripción*: ${descripcion}\n*Fecha y hora*: ${fecha} a las ${hora}\n*Dispositivo*: ${dispositivo}\n*Navegador*: ${navegador}\n*Sistema operativo*: ${os}\n*Impacto*: ${impacto}\n*Solución tentativa*: ${solucion}\n*Detalle del problema*: ${detalle}\n*Información adicional*: ${adicional}\n*Teléfono*: ${telefono}\n*Correo*: ${correo}`;
 
     const randNumber = await generateUniqueTicketNumber();
 
@@ -151,5 +151,5 @@ export async function POST(context: APIContext): Promise<Response> {
         body: JSON.stringify(slackMessage),
     });
 
-    return context.redirect("/thankyou");
+    return context.redirect(`/thankyou/${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}`);
 }

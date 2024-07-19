@@ -1,0 +1,46 @@
+---
+import { db, tickets } from "astro:db";
+import Layout from "../../layouts/Layout.astro";
+
+const allTickets = await db.select().from(tickets);
+---
+
+<Layout>
+  <div class="grid">
+    {allTickets.map((ticket) => (
+      <div class="card" key={ticket.ticketNumber}>
+        <h1>{ticket.ticketNumber}</h1>
+        <h2>{ticket.ticketInfo.empresa}</h2>
+        <p>{ticket.ticketInfo.descripcion}</p>
+      </div>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #a29d9d;
+  }
+  .card h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  .card h2 {
+    font-size: 18px;
+    margin: 8px 0 0 0;
+  }
+  .card p {
+    font-size: 14px;
+    margin: 8px 0 0 0;
+  }
+</style>

@@ -3,63 +3,48 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-
   <div class="topContainer">
     <h1>Bienvenido a reportes CID</h1>
-  
   </div>
-  
+
   <div class="midleContainer">
-    <a href="">
-      <div class="prevTicket">
-        <h3>Usar un ticket previo</h3>
-        <p>Si ya tienes un número de ticket y quieres complementar el problema anterior. Genera una orden con el mismo número.</p>
-      </div>
-  
-    </a>
-    <a href="">
+    <div class="prevTicket">
+      <h3>Usar un ticket previo</h3>
+      <p>Si ya tienes un número de ticket y quieres complementar el problema anterior. Genera una orden con el mismo número.</p>
+      <input type="text" id="ticketInput" oninput="updateLink()">
+      <a id="ticketLink" href="">Ir al ticket</a>
+    </div>
+
+    <a href="/report">
       <div class="newTicket">
         <h3>Registra un nuevo reporte</h3>
         <p>Al registrar un reporte nuestro equipo adquiere la información necesaria para atender tu problema con mayor solvencia.</p>
       </div>
     </a>
   </div>
-</Layout>
-  
 
+</Layout>
 
 <style>
-
-  a{
+  a {
     text-decoration: none;
   }
-  .topContainer{
+  .topContainer {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-  .midleContainer{
+  .midleContainer {
     margin-top: 200px;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
-
-  .prevTicket{
+  .prevTicket, .newTicket {
     height: 350px;
     width: 350px;
     border: 2px solid black;
     border-radius: 16px;
     text-align: center;
   }
-
-  .newTicket{
-    height: 350px;
-    width: 350px;
-    border: 2px solid black;
-    border-radius: 16px;
-    text-align: center;
-  }
-
 </style>

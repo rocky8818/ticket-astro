@@ -1,12 +1,17 @@
 ---
 import {tickets, db} from "astro:db";
+import Layout from "../layouts/Layout.astro";
 
 const allTickets = await db.select().from(tickets);
 ---
 
-{
-    allTickets.map((ticket) => (
-        <h1>{ticket.ticketNumber}</h1>
-        <p>{ticket.resumen}</p>
-    ))
-}
+
+<Layout>
+    {
+        allTickets.map((ticket) => (
+            <h1>{ticket.ticketNumber}</h1>
+            <p>{ticket.resumen}</p>
+        ))
+    }
+
+</Layout>
