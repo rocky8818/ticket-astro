@@ -1,0 +1,39 @@
+---
+const { user } = Astro.locals;
+if (user == null) {
+  return Astro.redirect("/admin/signin");
+}
+import MainLayout from "@/layouts/MainLayout.astro";
+import { eq } from "astro:db";
+import { tickets } from "astro:db";
+import { db } from "astro:db"; // Ajusta según tu configuración de base de datos
+
+const { ticketNumber } = Astro.params;
+const ticket: any = await db.select().from(tickets).where(eq(tickets.ticketNumber, ticketNumber)); 
+
+if (!ticket) {
+  throw new Error(`Ticket con ID ${ticketNumber} no encontrado`);
+}
+---
+<MainLayout>
+
+    <div class="container mx-auto p-8">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold mb-4">Ticket #{ticket[0].ticketNumber} - {ticket[0].ticketInfo.empresa}</h1>
+        <div class="space-y-4">
+          <div><strong>Prioridad:</strong> {ticket[0].ticketInfo.prioridad}</div>
+          <div><strong>Descripción:</strong> {ticket[0].ticketInfo.descripcion}</div>
+          <div><strong>Fecha y hora:</strong> {ticket[0].ticketInfo.fechaHora}</div>
+          <div><strong>Dispositivo:</strong> {ticket[0].ticketInfo.dispositivo}</div>
+          <div><strong>Navegador:</strong> {ticket[0].ticketInfo.navegador}</div>
+          <div><strong>Sistema operativo:</strong> {ticket[0].ticketInfo.so}</div>
+          <div><strong>Impacto:</strong> {ticket[0].ticketInfo.impacto}</div>
+          <div><strong>Solución tentativa:</strong> {ticket[0].ticketInfo.solucionTentativa}</div>
+          <div><strong>Detalle del problema:</strong> {ticket[0].ticketInfo.detalle}</div>
+          <div><strong>Información adicional:</strong> {ticket[0].ticketInfo.infoAdicional}</div>
+          <div><strong>Teléfono:</strong> {ticket[0].ticketInfo.telefono}</div>
+          <div><strong>Correo:</strong> {ticket[0].ticketInfo.correo}</div>
+        </div>
+      </div>
+    </div>
+</MainLayout>

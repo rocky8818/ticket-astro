@@ -1,21 +1,28 @@
 ---
+
+const { user } = Astro.locals;
+if (user == null) {
+  return Astro.redirect("/admin/signin");
+}
 import { db, tickets } from "astro:db";
-import Layout from "../../layouts/Layout.astro";
+import CardComponent from "@/adminComponents/CardComponent.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 
 const allTickets = await db.select().from(tickets);
 ---
+<MainLayout>
 
-<Layout>
-  <div class="grid">
-    {allTickets.map((ticket) => (
-      <div class="card" key={ticket.ticketNumber}>
-        <h1>{ticket.ticketNumber}</h1>
-        <h2>{ticket.ticketInfo.empresa}</h2>
-        <p>{ticket.ticketInfo.descripcion}</p>
-      </div>
-    ))}
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {allTickets.map(ticket => (
+        <a href={`/tickets/${ticket.ticketNumber}`}>
+        <CardComponent ticket={ticket} />
+      </a>
+        
+      ))}
+    </div>
   </div>
-</Layout>
+</MainLayout>
 
 <style>
   .grid {
