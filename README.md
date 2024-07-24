@@ -3,7 +3,7 @@
 # Generador de tickets!!
 
 <p align="center">
-  <svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+ <svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:yellow;stop-opacity:1" />
@@ -11,11 +11,12 @@
       <stop offset="100%" style="stop-color:red;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <rect x="10" y="20" width="180" height="60" rx="10" ry="10" fill="url(#grad1)" stroke="black" stroke-width="2"/>
-  <circle cx="20" cy="50" r="10" fill="black"/>
-  <circle cx="180" cy="50" r="10" fill="black"/>
-  <text x="100" y="55" font-family="Arial" font-size="20" text-anchor="middle" fill="black">TICKET</text>
+  <rect x="10" y="10" width="180" height="80" rx="10" ry="10" fill="url(#grad1)" stroke="black" stroke-width="2"/>
+  <path d="M 10 30 Q 5 25 10 20 Q 15 15 20 20 Q 25 25 20 30 Q 15 35 10 30" fill="black"/>
+  <path d="M 10 70 Q 5 65 10 60 Q 15 55 20 60 Q 25 65 20 70 Q 15 75 10 70" fill="black"/>
+  <text x="100" y="55" font-family="Arial" font-size="20" fill="black" text-anchor="middle">#12345</text>
 </svg>
+
 
 </p>
 
