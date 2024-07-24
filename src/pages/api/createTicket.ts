@@ -4,6 +4,7 @@ import type { ticket } from "../../../lib/models";
 
 const slack_url = import.meta.env.SLACK_WEBHOOK
 const slack_token = import.meta.env.SLACK_TOKEN
+const slack_channel = import.meta.env.SLACK_CHANNEL
 
 let aggregate = ''
 
@@ -123,7 +124,7 @@ export async function POST(context: APIContext): Promise<Response> {
                     id: uploadUrlResult.file_id,
                     title: 'Imagen del Ticket',
                 }],
-                channel_id: 'C07CQT29NCW'
+                channel_id: slack_channel
             }),
         });
     

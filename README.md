@@ -1,47 +1,43 @@
-# Astro Starter Kit: Minimal
 
-```sh
-npm create astro@latest -- --template minimal
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+# Generador de tickets!!
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+<p align="center">
+  <svg width="200" height="100" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:yellow;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:orange;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:red;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="10" y="20" width="180" height="60" rx="10" ry="10" fill="url(#grad1)" stroke="black" stroke-width="2"/>
+  <circle cx="20" cy="50" r="10" fill="black"/>
+  <circle cx="180" cy="50" r="10" fill="black"/>
+  <text x="100" y="55" font-family="Arial" font-size="20" text-anchor="middle" fill="black">TICKET</text>
+</svg>
 
-## 🚀 Project Structure
+</p>
 
-Inside of your Astro project, you'll see the following folders and files:
+## Levantamiento de app
+npm i
+npm run dev
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Endpoints
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+ Este proyecto contiene 2 endpoints, uno para generar un reporte desde whatsapp y otro para generar un reporte desde la form contenida en /report o /report/ticketNumber
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+ ### endpoint de whatsapp
+ Al hacer un post a /api/reportwhatsapp se genera una entrada a la base de datos de de astro a la colecci´n de tickets
 
-Any static assets, like images, can be placed in the `public/` directory.
+ ### endpoint de form
+ Este endpoint genera una entrada a la colección de tickets ademas de un mensaje a un canal de slack, sin embargo es necesario tener las variables de entorno SLACK_TOKEN, SLACK_WEBHOOK y SLACK_CHANNEL
 
-## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+## Variables de entorno
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+La variable de SLACK_TOKEN debe de ser un xoxp sin caducidad.
+SLACK_CHANNEL es el id del canal al cual llegaran los mensajes
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Versiones
+Para 24 de julio para compilar la app, es necesario usar la versión 0.8.8 de astro db

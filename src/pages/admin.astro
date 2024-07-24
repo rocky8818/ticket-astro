@@ -1,0 +1,8 @@
+---
+const { user } = Astro.locals;
+if (user == null) {
+  return Astro.redirect("/admin/signin");
+}else{
+    return Astro.redirect("/admin/allreports");
+}
+---
