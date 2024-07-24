@@ -78,78 +78,94 @@ export async function POST(context: APIContext): Promise<Response> {
     form.append('filename', imageFilename);
     form.append('length', imageSize.toString());
     
-    const uploadUrlResponse = await fetch('https://slack.com/api/files.getUploadURLExternal', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${slack_token}`,
-        },
-        body: form,
-    });
-    
-    
-    const uploadUrlResult = await uploadUrlResponse.json();
-    if (!uploadUrlResult.ok) {
-        throw new Error('Error getting upload URL from Slack: ' + uploadUrlResult.error);
-    }
-    
-    const uploadUrl = uploadUrlResult.upload_url;
+    if (imageSize != 0){
 
-    
-    // Subir la imagen a Slack
-    const uploadResponse = await fetch(uploadUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': (imagen as File).type,
-        },
-        body: imagen,
-    });
-    
-    if (!uploadResponse.ok) {
-        throw new Error('Error uploading image to Slack: ' + uploadResponse.statusText);
-    }
-    
-    console.log(uploadUrlResult)
-
-    // Completar la carga de la imagen en Slack
-    const completeUploadResponse = await fetch('https://slack.com/api/files.completeUploadExternal', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${slack_token}`,
-        },
-        body: JSON.stringify({
-            files: [{
-                id: uploadUrlResult.file_id,
-                title: 'Imagen del Ticket',
-            }],
-            channel_id: 'C07CQT29NCW'
-        }),
-    });
-
-    const completeUploadResult = await completeUploadResponse.json();
-    if (!completeUploadResult.ok) {
-        throw new Error('Error completing upload to Slack: ' + completeUploadResult.error);
-    }
-
-    // Enviar mensaje a Slack con la imagen
-    const slackMessage = {
-        text: `Nuevo ticket creado ${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}:\n\n${resumen}`,
-        attachments: [
-            {
-                text: "Imagen adjunta",
-                image_url: completeUploadResult.files[0].url_private,
-                title: "Imagen del Ticket",
+        const uploadUrlResponse = await fetch('https://slack.com/api/files.getUploadURLExternal', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${slack_token}`,
             },
-        ],
-    };
+            body: form,
+        });
+        const uploadUrlResult = await uploadUrlResponse.json();
+        if (!uploadUrlResult.ok) {
+            throw new Error('Error getting upload URL from Slack: ' + uploadUrlResult.error);
+        }
+        
+        const uploadUrl = uploadUrlResult.upload_url;
+    
+        
+        // Subir la imagen a Slack
+        const uploadResponse = await fetch(uploadUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': (imagen as File).type,
+            },
+            body: imagen,
+        });
+        
+        if (!uploadResponse.ok) {
+            throw new Error('Error uploading image to Slack: ' + uploadResponse.statusText);
+        }
+        
+        console.log(uploadUrlResult)
+        
+    
+        // Completar la carga de la imagen en Slack
+        const completeUploadResponse = await fetch('https://slack.com/api/files.completeUploadExternal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${slack_token}`,
+            },
+            body: JSON.stringify({
+                files: [{
+                    id: uploadUrlResult.file_id,
+                    title: 'Imagen del Ticket',
+                }],
+                channel_id: 'C07CQT29NCW'
+            }),
+        });
+    
+        const completeUploadResult = await completeUploadResponse.json();
+        if (!completeUploadResult.ok) {
+            throw new Error('Error completing upload to Slack: ' + completeUploadResult.error);
+        }
+    
+        // Enviar mensaje a Slack con la imagen
+        const slackMessage = {
+            text: `Nuevo ticket creado ${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}:\n\n${resumen}`,
+            attachments: [
+                {
+                    text: "Imagen adjunta",
+                    image_url: completeUploadResult.files[0].url_private,
+                    title: "Imagen del Ticket",
+                },
+            ],
+        };
 
-    await fetch(slack_url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(slackMessage),
-    });
+        await fetch(slack_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(slackMessage),
+        });
+    }else{
+        const slackMessage = {
+            text: `Nuevo ticket creado ${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}:\n\n${resumen}`,
+        };
+        
+        await fetch(slack_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(slackMessage),
+        });
+    }
+    
+
 
     return context.redirect(`/thankyou/${prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate}`);
 }
