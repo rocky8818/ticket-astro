@@ -1,4 +1,4 @@
-import { User, db, tickets } from 'astro:db';
+import { User, db } from 'astro:db';
 
 // https://astro.build/db/seed
 export default async function seed() {

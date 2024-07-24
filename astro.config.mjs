@@ -8,6 +8,11 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   integrations: [db(), tailwind(), react()],
+  vite: {
+    optimizeDeps: {
+      exclude: ["oslo"]
+    }
+  },
   output: "server",
   adapter: node({
     mode: "standalone"
