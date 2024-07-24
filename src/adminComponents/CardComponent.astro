@@ -1,20 +1,110 @@
 ---
 const { ticket } = Astro.props;
+
+function textoCorto(text: any, maxLength: any) {
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength) + "...";
+  }
+  return text;
+}
 ---
 
 <div class="max-w-sm rounded overflow-hidden shadow-lg m-4 p-4 bg-white">
-  <div class="font-bold text-xl mb-2">Ticket #{ticket.ticketNumber} de {ticket.ticketInfo.empresa}</div>
-  <p class="text-gray-700 text-base"><strong>Prioridad:</strong> {ticket.ticketInfo.prioridad}</p>
-  <p class="text-gray-700 text-base"><strong>Contacto:</strong> {ticket.ticketInfo.contacto}</p>
-  <p class="text-gray-700 text-base"><strong>Descripción:</strong> {ticket.ticketInfo.descripcion}</p>
-  <p class="text-gray-700 text-base"><strong>Fecha y hora:</strong> {ticket.ticketInfo.fechaHora}</p>
-  <p class="text-gray-700 text-base"><strong>Dispositivo:</strong> {ticket.ticketInfo.dispositivo}</p>
-  <p class="text-gray-700 text-base"><strong>Navegador:</strong> {ticket.ticketInfo.navegador}</p>
-  <p class="text-gray-700 text-base"><strong>Sistema operativo:</strong> {ticket.ticketInfo.so}</p>
-  <p class="text-gray-700 text-base"><strong>Impacto:</strong> {ticket.ticketInfo.impacto}</p>
-  <p class="text-gray-700 text-base"><strong>Solución tentativa:</strong> {ticket.ticketInfo.solucion}</p>
-  <p class="text-gray-700 text-base"><strong>Detalle del problema:</strong> {ticket.ticketInfo.detalle}</p>
-  <p class="text-gray-700 text-base"><strong>Información adicional:</strong> {ticket.ticketInfo.adicional}</p>
-  <p class="text-gray-700 text-base"><strong>Teléfono:</strong> {ticket.ticketInfo.telefono}</p>
-  <p class="text-gray-700 text-base"><strong>Correo:</strong> {ticket.ticketInfo.correo}</p>
+  <div class="font-bold text-xl mb-2">
+    Ticket #{ticket.ticketNumber} de {textoCorto(ticket.ticketInfo.empresa, 20)}
+  </div>
+  <div class="flex-grow">
+    <p class="text-gray-700 text-base">
+      <strong>Prioridad:</strong>
+      {
+        ticket.ticketInfo.prioridad
+          ? textoCorto(ticket.ticketInfo.prioridad, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Contacto:</strong>
+      {
+        ticket.ticketInfo.contacto
+          ? textoCorto(ticket.ticketInfo.contacto, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Descripción:</strong>
+      {
+        ticket.ticketInfo.descripcion
+          ? textoCorto(ticket.ticketInfo.descripcion, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Fecha y hora:</strong>
+      {ticket.ticketInfo.fecha ? textoCorto(ticket.ticketInfo.fecha, 20) : null}
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Dispositivo:</strong>
+      {ticket.ticketInfo.hora ? textoCorto(ticket.ticketInfo.hora, 20) : null}
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Navegador:</strong>
+      {
+        ticket.ticketInfo.navegador
+          ? textoCorto(ticket.ticketInfo.navegador, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Sistema operativo:</strong>
+      {ticket.ticketInfo.so ? textoCorto(ticket.ticketInfo.so, 20) : null}
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Impacto:</strong>
+      {
+        ticket.ticketInfo.impacto
+          ? textoCorto(ticket.ticketInfo.impacto, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Solución tentativa:</strong>
+      {
+        ticket.ticketInfo.solucion
+          ? textoCorto(ticket.ticketInfo.solucion, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Detalle del problema:</strong>
+      {
+        ticket.ticketInfo.detalle
+          ? textoCorto(ticket.ticketInfo.detalle, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Información adicional:</strong>
+      {
+        ticket.ticketInfo.adicional
+          ? textoCorto(ticket.ticketInfo.adicional, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Teléfono:</strong>
+      {
+        ticket.ticketInfo.telefono
+          ? textoCorto(ticket.ticketInfo.telefono, 20)
+          : null
+      }
+    </p>
+    <p class="text-gray-700 text-base">
+      <strong>Correo:</strong>
+      {
+        ticket.ticketInfo.correo
+          ? textoCorto(ticket.ticketInfo.correo, 20)
+          : null
+      }
+    </p>
+  </div>
 </div>

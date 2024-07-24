@@ -16,24 +16,26 @@ if (!ticket) {
 }
 ---
 <MainLayout>
-
-    <div class="container mx-auto p-8">
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-2xl font-bold mb-4">Ticket #{ticket[0].ticketNumber} - {ticket[0].ticketInfo.empresa}</h1>
-        <div class="space-y-4">
-          <div><strong>Prioridad:</strong> {ticket[0].ticketInfo.prioridad}</div>
-          <div><strong>Descripción:</strong> {ticket[0].ticketInfo.descripcion}</div>
-          <div><strong>Fecha y hora:</strong> {ticket[0].ticketInfo.fechaHora}</div>
-          <div><strong>Dispositivo:</strong> {ticket[0].ticketInfo.dispositivo}</div>
-          <div><strong>Navegador:</strong> {ticket[0].ticketInfo.navegador}</div>
-          <div><strong>Sistema operativo:</strong> {ticket[0].ticketInfo.so}</div>
-          <div><strong>Impacto:</strong> {ticket[0].ticketInfo.impacto}</div>
-          <div><strong>Solución tentativa:</strong> {ticket[0].ticketInfo.solucionTentativa}</div>
-          <div><strong>Detalle del problema:</strong> {ticket[0].ticketInfo.detalle}</div>
-          <div><strong>Información adicional:</strong> {ticket[0].ticketInfo.infoAdicional}</div>
-          <div><strong>Teléfono:</strong> {ticket[0].ticketInfo.telefono}</div>
-          <div><strong>Correo:</strong> {ticket[0].ticketInfo.correo}</div>
-        </div>
+  <div class="container mx-auto p-8">
+    <a href="/admin/allreports" class="inline-block mb-4 text-blue-500 hover:underline">
+      ← Regresar a todos los reportes
+    </a>
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h1 class="text-2xl font-bold mb-4">Ticket #{ticket[0].ticketNumber} - {ticket[0].ticketInfo.empresa}</h1>
+      <div class="space-y-4">
+        <div><strong>Prioridad:</strong> {ticket[0].ticketInfo.prioridad}</div>
+        <div><strong>Descripción:</strong> {ticket[0].ticketInfo.descripcion}</div>
+        <div><strong>Fecha y hora:</strong> {ticket[0].ticketInfo.fechaHora}</div>
+        <div><strong>Dispositivo:</strong> {ticket[0].ticketInfo.dispositivo}</div>
+        <div><strong>Navegador:</strong> {ticket[0].ticketInfo.navegador}</div>
+        <div><strong>Sistema operativo:</strong> {ticket[0].ticketInfo.so}</div>
+        <div><strong>Impacto:</strong> {ticket[0].ticketInfo.impacto}</div>
+        <div><strong>Solución tentativa:</strong> {ticket[0].ticketInfo.solucionTentativa}</div>
+        <div><strong>Detalle del problema:</strong> {ticket[0].ticketInfo.detalle}</div>
+        <div><strong>Información adicional:</strong> {ticket[0].ticketInfo.infoAdicional}</div>
+        <div><strong>Teléfono:</strong> {ticket[0].ticketInfo.telefono}</div>
+        <div><strong>Correo:</strong> {ticket[0].ticketInfo.correo}</div>
       </div>
     </div>
+  </div>
 </MainLayout>

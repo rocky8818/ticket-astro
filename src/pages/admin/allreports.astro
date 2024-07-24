@@ -15,7 +15,7 @@ const allTickets = await db.select().from(tickets);
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {allTickets.map(ticket => (
-        <a href={`/tickets/${ticket.ticketNumber}`}>
+        <a href={`/admin/ticket/${ticket.ticketNumber}`}>
         <CardComponent ticket={ticket} />
       </a>
         

@@ -26,6 +26,7 @@ export async function POST(context: APIContext): Promise<Response> {
   // Insert user into db
   const userId = generateId(15);
   const hashedPassword = await new Argon2id().hash(password);
+  console.log(hashedPassword);
 
   await db.insert(User).values([
     {
@@ -43,5 +44,5 @@ export async function POST(context: APIContext): Promise<Response> {
     sessionCookie.value,
     sessionCookie.attributes
   );
-  return context.redirect("/");
+  return context.redirect("/admin/allreports");
 }
