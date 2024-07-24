@@ -1,10 +1,14 @@
 ---
 import ReportComponent from "../components/forms/ReportComponent.astro";
-import Layout from "../layouts/Layout.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<Layout>
-  <h1>Reporte de errores</h1>
+<MainLayout>
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Reporte de errores</h1>
 
-  <ReportComponent />
-</Layout>
+    <div class=" rounded-lg p-6">
+      <ReportComponent />
+    </div>
+  </div>
+</MainLayout>

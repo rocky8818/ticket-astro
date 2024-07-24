@@ -1,50 +1,28 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import TicketInput from "../components/react/TicketInput.jsx"; // Asegúrate de ajustar la ruta
 ---
 
-<Layout>
-  <div class="topContainer">
-    <h1>Bienvenido a reportes CID</h1>
+<MainLayout>
+  <div class="flex justify-center items-center h-32 bg-gray-100">
+    <h1 class="text-3xl font-bold text-gray-800">Bienvenido a reportes CID</h1>
   </div>
 
-  <div class="midleContainer">
-    <div class="prevTicket">
-      <h3>Usar un ticket previo</h3>
-      <p>Si ya tienes un número de ticket y quieres complementar el problema anterior. Genera una orden con el mismo número.</p>
-      <input type="text" id="ticketInput" oninput="updateLink()">
-      <a id="ticketLink" href="">Ir al ticket</a>
-    </div>
-
-    <a href="/report">
-      <div class="newTicket">
-        <h3>Registra un nuevo reporte</h3>
-        <p>Al registrar un reporte nuestro equipo adquiere la información necesaria para atender tu problema con mayor solvencia.</p>
+  <div class="flex flex-col items-center mt-16 space-y-8 mx-4">
+    <div class="flex justify-around w-full max-w-4xl">
+      <!-- Ticket Input Island -->
+      <div class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <TicketInput client:load />
       </div>
-    </a>
+
+      <a href="/report" class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full flex flex-col items-center text-center no-underline transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="flex flex-col justify-center h-full">
+          <h3 class="text-xl font-semibold mb-4">Registra un nuevo reporte</h3>
+          <p class="text-gray-600">
+            Al registrar un reporte nuestro equipo adquiere la información necesaria para atender tu problema con mayor solvencia.
+          </p>
+        </div>
+      </a>
+    </div>
   </div>
-
-</Layout>
-
-<style>
-  a {
-    text-decoration: none;
-  }
-  .topContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .midleContainer {
-    margin-top: 200px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .prevTicket, .newTicket {
-    height: 350px;
-    width: 350px;
-    border: 2px solid black;
-    border-radius: 16px;
-    text-align: center;
-  }
-</style>
+</MainLayout>

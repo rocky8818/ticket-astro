@@ -1,12 +1,21 @@
 ---
-import Layout from "../../layouts/Layout.astro"
+import MainLayout from "../../layouts/MainLayout.astro"
 
-const {ticket_number} = Astro.params
-
+const { ticket_number } = Astro.params
 ---
 
-<Layout>
-            <h1>Tu número de ticket es: {ticket_number}</h1>
-            <p>Hemos recibido tu reporte, nos comunicaremos contigo para darle continuidad.</p>
-
-</Layout>
+<MainLayout>
+  <div class="container mx-auto p-6">
+    <div class="bg-white shadow-md rounded-lg p-6 text-center">
+      <h1 class="text-3xl font-bold mb-4 text-orange-600">¡Gracias por tu reporte!</h1>
+      <p class="text-lg mb-4">Tu número de ticket es:</p>
+      <p class="text-2xl font-semibold text-orange-700">{ticket_number}</p>
+      <p class="text-lg mt-4">Hemos recibido tu reporte y nos comunicaremos contigo para darle continuidad.</p>
+      <div class="mt-6">
+        <a href="/" class="inline-block px-6 py-2 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+          Volver a la página principal
+        </a>
+      </div>
+    </div>
+  </div>
+</MainLayout>

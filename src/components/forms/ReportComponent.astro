@@ -2,109 +2,180 @@
 const { prevTicket = '0' } = Astro.props
 ---
 
-<form action="/api/createTicket" method="post" enctype="multipart/form-data">
+<form action="/api/createTicket" method="post" enctype="multipart/form-data" class="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
 
-    <input type="text"  name="prevticket" style="display: none;" value={prevTicket}>
-    <h2>Información de contacto</h2>
-    <label for="empresa">Nombre de la empresa</label>
-    <input type="text" name="empresa" id="empresa" />
+    <!-- Campo oculto para el número de ticket previo -->
+    <input type="hidden" name="prevticket" value={prevTicket} />
 
-    <label for="contacto">Nombre del contacto</label>
-    <input type="text" name="contacto" id="contacto" />
+    <h2 class="text-2xl font-bold mb-4">Información de contacto</h2>
 
-    <label for="correo">Correo electrónico</label>
-    <input type="text" name="correo" id="correo" />
+    <div class="mb-4">
+      <label for="empresa" class="block text-sm font-medium text-gray-700">Nombre de la empresa</label>
+      <input type="text" name="empresa" id="empresa" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" required />
+    </div>
 
-    <label for="telefono">Teléfono</label>
-    <input type="text" name="telefono" id="telefono" />
+    <div class="mb-4">
+      <label for="contacto" class="block text-sm font-medium text-gray-700">Nombre del contacto</label>
+      <input type="text" name="contacto" id="contacto" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" required />
+    </div>
 
-    <label for="descripcion">Descripción del problema</label>
-    <textarea name="descripcion" id="descripcion"></textarea>
+    <div class="mb-4">
+      <label for="correo" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+      <input type="email" name="correo" id="correo" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" required />
+    </div>
 
-    <label for="fecha">Fecha del error</label>
-    <input type="text" name="fecha" id="fecha" />
+    <div class="mb-4">
+      <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
+      <input type="tel" name="telefono" id="telefono" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" required />
+    </div>
 
-    <label for="hora">Hora del error</label>
-    <input type="text" name="hora" id="hora" />
-
-    <label for="detalle">Descripción detallada del problema</label>
-    <textarea name="detalle" id="detalle"></textarea>
-
-    <label for="capturas">Capturas de pantalla</label>
-    <input type="file" name="image" id="">
-
-    <h2>Información técnica</h2>
-
-    <h3>Sistema operativo</h3>
-
-    <input type="radio" value="windows" checked="true" name="os" id="windows" />
-    <label for="windows">Windows</label>
-    <input type="radio" value="mac" name="os" id="mac" />
-    <label for="mac">Mac</label>
-    <input type="radio" value="linux" name="os" id="linux" />
-    <label for="linux">Linux</label>
-    <input type="radio" value="ios" name="os" id="ios" />
-    <label for="ios">iOS</label>
-    <input type="radio" value="android" name="os" id="android" />
-    <label for="android">Android</label>
-    <input type="radio" value="na" name="os" id="na" />
-    <label for="na">No aplica</label>
-
-    <h3>Navegador</h3>
-
-    <input type="radio" value="chrome" checked="true" name="navegador" id="chrome" />
-    <label for="chrome">Google Chrome</label>
-    <input type="radio" value="safari" name="navegador" id="safari" />
-    <label for="safari">Safari</label>
-    <input type="radio" value="edge" name="navegador" id="edge" />
-    <label for="edge">Microsoft Edge</label>
-    <input type="radio" value="firefox" name="navegador" id="firefox" />
-    <label for="firefox">Firefox</label>
-    <input type="radio" value="otro" name="navegador" id="otroNav" />
-    <label for="otroNav">Otro</label>
-    <input type="radio" value="na" name="navegador" id="naNav" />
-    <label for="naNav">No aplica</label>
-
-    <h3>Tipo de dispositivo</h3>
-
-    <input type="radio" value="desktop" checked="true" name="dispositivo" id="desktop" />
-    <label for="desktop">Desktop</label>
-    <input type="radio" value="tablet" name="dispositivo" id="tablet" />
-    <label for="tablet">Tablet</label>
-    <input type="radio" value="celular" name="dispositivo" id="celular" />
-    <label for="celular">Celular</label>
-    <input type="radio" value="otro" name="dispositivo" id="otroDis" />
-    <label for="otroDis">Otro</label>
-    <input type="radio" value="otro" name="dispositivo" id="naDis" />
-    <label for="naDis">No aplica</label>
+    <div class="mb-4">
+      <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción del problema</label>
+      <textarea name="descripcion" id="descripcion" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" rows="3" required></textarea>
+    </div>
 
 
-    <h3>Impacto del problema</h3>
-    <label for="impacto"
-      >Describe cómo está afectando este problema a tu negocio o a tus
-      operaciones diarias.</label
-    >
-    <textarea name="impacto" id=""></textarea>
+    <div class="mb-4">
+      <label for="detalle" class="block text-sm font-medium text-gray-700">Descripción detallada del problema</label>
+      <textarea name="detalle" id="detalle" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" rows="4"></textarea>
+    </div>
 
-    <h3>Intento de solución</h3>
-    <label for="solucion">Describe cualquier paso que ya hayas tomado para intentar resolver el
-        problema.</label>
-        
-    <textarea name="solucion" id=""></textarea>
+    <div class="mb-4">
+      <label for="capturas" class="block text-sm font-medium text-gray-700">Capturas de pantalla</label>
+      <input type="file" name="image" id="capturas" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" />
+    </div>
 
-    <h3>Prioridad del problema</h3>
-    <input type="radio" value="baja" checked="" name="prioridad" id="baja" />
-    <label for="baja">Baja</label>
-    <input type="radio" value="media" name="prioridad" id="media" />
-    <label for="media">Media</label>
-    <input type="radio" value="alta" name="prioridad" id="alta" />
-    <label for="alta">Alta</label>
+    <h2 class="text-2xl font-bold mt-6 mb-4">Información técnica</h2>
 
-    <h3>Información adicional</h3>
-    <label for="adicional">
-      Cualquier otra información que creas que puede ser relevante.</label
-    >
-    <textarea  name="adicional" id="adicional"></textarea>
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Sistema operativo</h3>
+      <div class="flex flex-wrap gap-4">
+        <label class="flex items-center">
+          <input type="radio" value="windows"  name="os" id="windows" class="form-radio" />
+          <span class="ml-2">Windows</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="mac" name="os" id="mac" class="form-radio" />
+          <span class="ml-2">Mac</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="linux" name="os" id="linux" class="form-radio" />
+          <span class="ml-2">Linux</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="ios" name="os" id="ios" class="form-radio" />
+          <span class="ml-2">iOS</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="android" name="os" id="android" class="form-radio" />
+          <span class="ml-2">Android</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="na" checked name="os" id="na" class="form-radio" />
+          <span class="ml-2">No aplica</span>
+        </label>
+      </div>
+    </div>
 
-    <button type="submit">Enviar</button>
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Navegador</h3>
+      <div class="flex flex-wrap gap-4">
+        <label class="flex items-center">
+          <input type="radio" value="chrome"  name="navegador" id="chrome" class="form-radio" />
+          <span class="ml-2">Google Chrome</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="safari" name="navegador" id="safari" class="form-radio" />
+          <span class="ml-2">Safari</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="edge" name="navegador" id="edge" class="form-radio" />
+          <span class="ml-2">Microsoft Edge</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="firefox" name="navegador" id="firefox" class="form-radio" />
+          <span class="ml-2">Firefox</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="otro" name="navegador" id="otroNav" class="form-radio" />
+          <span class="ml-2">Otro</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="na" checked name="navegador" id="naNav" class="form-radio" />
+          <span class="ml-2">No aplica</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Tipo de dispositivo</h3>
+      <div class="flex flex-wrap gap-4">
+        <label class="flex items-center">
+          <input type="radio" value="desktop"  name="dispositivo" id="desktop" class="form-radio" />
+          <span class="ml-2">Desktop</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="tablet" name="dispositivo" id="tablet" class="form-radio" />
+          <span class="ml-2">Tablet</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="celular" name="dispositivo" id="celular" class="form-radio" />
+          <span class="ml-2">Celular</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="otro" name="dispositivo" id="otroDis" class="form-radio" />
+          <span class="ml-2">Otro</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="na" checked name="dispositivo" id="naDis" class="form-radio" />
+          <span class="ml-2">No aplica</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Impacto del problema</h3>
+      <label for="impacto" class="block text-sm font-medium text-gray-700">
+        Describe cómo está afectando este problema a tu negocio o a tus operaciones diarias.
+      </label>
+      <textarea name="impacto" id="impacto" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" rows="3"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Intento de solución</h3>
+      <label for="solucion" class="block text-sm font-medium text-gray-700">
+        Describe cualquier paso que ya hayas tomado para intentar resolver el problema.
+      </label>
+      <textarea name="solucion" id="solucion" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" rows="3"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Prioridad del problema</h3>
+      <div class="flex flex-wrap gap-4">
+        <label class="flex items-center">
+          <input type="radio" value="baja" checked name="prioridad" id="baja" class="form-radio" />
+          <span class="ml-2">Baja</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="media" name="prioridad" id="media" class="form-radio" />
+          <span class="ml-2">Media</span>
+        </label>
+        <label class="flex items-center">
+          <input type="radio" value="alta" name="prioridad" id="alta" class="form-radio" />
+          <span class="ml-2">Alta</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <h3 class="text-lg font-semibold mb-2">Información adicional</h3>
+      <label for="adicional" class="block text-sm font-medium text-gray-700">
+        Cualquier otra información que creas que puede ser relevante.
+      </label>
+      <textarea name="adicional" id="adicional" class="mt-1 block w-full border border-gray-300 rounded-lg p-2 text-sm" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+      Enviar
+    </button>
   </form>

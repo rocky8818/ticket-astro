@@ -1,16 +1,16 @@
 ---
 import ReportComponent from "../../components/forms/ReportComponent.astro"
-import Layout from "../../layouts/Layout.astro"
+import MainLayout from "../../layouts/MainLayout.astro"
 
 const {ticketNumber} = Astro.params
 console.log(ticketNumber)
 ---
 
-<Layout>
+<MainLayout>
 
     <ReportComponent prevTicket={ticketNumber} />
 
-</Layout>
+</MainLayout>
 
 
 
