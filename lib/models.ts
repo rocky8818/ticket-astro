@@ -3,4 +3,5 @@ export interface ticket {
     ticketNumber: string;
     resumen: string;
     ticketInfo: any;
+    ticketState: string;
   }

@@ -3,7 +3,6 @@ const { user } = Astro.locals;
 if (user == null) {
   return Astro.redirect("/admin/signin");
 }
-import type { ticket } from "lib/models";
 const priorityOrder: { [key: string]: number } = {
   alta: 1,
   Alta: 2,
@@ -13,11 +12,12 @@ const priorityOrder: { [key: string]: number } = {
   Baja: 6,
 };
 
-import { db, tickets } from "astro:db";
+import { db, tickets, eq } from "astro:db";
 import CardComponent from "@/adminComponents/CardComponent.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
+import type { ticket } from "lib/models";
 
-const allTickets = await db.select().from(tickets);
+const allTickets = await db.select().from(tickets).where(eq(tickets.ticketState, 'Resuelto'));
 
 const sortedTickets = allTickets.sort((a:ticket, b:ticket) => {
   return (priorityOrder[a.ticketInfo.prioridad] || 7) - (priorityOrder[b.ticketInfo.prioridad] || 7);
@@ -27,14 +27,15 @@ const sortedTickets = allTickets.sort((a:ticket, b:ticket) => {
 <MainLayout w_header>
   <div class="container mx-auto px-4">
     <div class="text-center mb-8">
-      <h1 class="text-3xl font-bold">Ver 
-        <span
-              class={`mt-10 inline-flex items-center px-3 py-1 text-md font-medium rounded-full cursor-pointer text-white bg-black`}
-            >
-              Todos
-            </span>
-      </h1>
-    </div>
+        <h1 class="text-3xl font-bold">
+          Ver
+          <span
+            class={`mt-10 inline-flex items-center px-3 py-1 text-md font-medium rounded-full cursor-pointer text-white bg-blue-500`}
+          >
+            Resueltos
+          </span>
+        </h1>
+      </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {sortedTickets.map(ticket => (
         <a href={`/admin/ticket/${ticket.ticketNumber}`}>

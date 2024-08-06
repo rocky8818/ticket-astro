@@ -6,34 +6,90 @@ if (user == null) {
 import MainLayout from "@/layouts/MainLayout.astro";
 import { eq } from "astro:db";
 import { tickets } from "astro:db";
-import { db } from "astro:db"; // Ajusta según tu configuración de base de datos
+import { db } from "astro:db";
 
 const { ticketNumber } = Astro.params;
-const ticket: any = await db.select().from(tickets).where(eq(tickets.ticketNumber, ticketNumber)); 
+const ticket: any = await db
+  .select()
+  .from(tickets)
+  .where(eq(tickets.ticketNumber, ticketNumber));
 
 if (!ticket) {
   throw new Error(`Ticket con ID ${ticketNumber} no encontrado`);
 }
 ---
-<MainLayout>
+
+<MainLayout w_header>
   <div class="container mx-auto p-8">
-    <a href="/admin/allreports" class="inline-block mb-4 text-blue-500 hover:underline">
+    <a
+      href="/admin/allreports"
+      class="inline-block mb-4 text-blue-500 hover:underline"
+    >
       ← Regresar a todos los reportes
     </a>
     <div class="bg-white rounded-lg shadow-lg p-6">
-      <h1 class="text-2xl font-bold mb-4">Ticket #{ticket[0].ticketNumber} - {ticket[0].ticketInfo.empresa}</h1>
-      <div class="space-y-4">
+      <div class="flex items-center mb-4">
+        <h1 class="text-2xl font-bold flex-grow">
+          Ticket #{ticket[0].ticketNumber} - {ticket[0].ticketInfo.empresa}
+        </h1>
+        <form action="/api/changestate" method="POST" class="inline">
+          <input
+            type="hidden"
+            name="ticketNumber"
+            value={ticket[0].ticketNumber}
+          />
+          <input
+            type="hidden"
+            name="estado"
+            value={ticket[0].ticketState}
+          />
+          <button type="submit" class="focus:outline-none">
+            <span
+              class={`inline-flex items-center px-3 py-1 text-sm font-medium rounded-full cursor-pointer ${
+                ticket[0].ticketState === "Resuelto"
+                  ? "bg-blue-500 text-white"
+                  : ticket[0].ticketState === "Pausa"
+                    ? "bg-yellow-500 text-black"
+                    : ticket[0].ticketState === "Abierto"
+                      ? "bg-green-500 text-white"
+                      : "bg-red-400 text-black"
+              }`}
+            >
+              {ticket[0].ticketState}
+            </span>
+          </button>
+        </form>
+      </div>
+      <div class="flex flex-wrap text-sm space-x-4 mb-4">
         <div><strong>Prioridad:</strong> {ticket[0].ticketInfo.prioridad}</div>
-        <div><strong>Descripción:</strong> {ticket[0].ticketInfo.descripcion}</div>
-        <div><strong>Dispositivo:</strong> {ticket[0].ticketInfo.dispositivo}</div>
-        <div><strong>Navegador:</strong> {ticket[0].ticketInfo.navegador}</div>
+        <div>
+          <strong>Dispositivo:</strong>
+          {ticket[0].ticketInfo.dispositivo}
+        </div>
         <div><strong>Sistema operativo:</strong> {ticket[0].ticketInfo.so}</div>
-        <div><strong>Impacto:</strong> {ticket[0].ticketInfo.impacto}</div>
-        <div><strong>Solución tentativa:</strong> {ticket[0].ticketInfo.solucionTentativa}</div>
-        <div><strong>Detalle del problema:</strong> {ticket[0].ticketInfo.detalle}</div>
-        <div><strong>Información adicional:</strong> {ticket[0].ticketInfo.infoAdicional}</div>
         <div><strong>Teléfono:</strong> {ticket[0].ticketInfo.telefono}</div>
         <div><strong>Correo:</strong> {ticket[0].ticketInfo.correo}</div>
+        <div><strong>Reportado desde:</strong> {ticket[0].ticketInfo.from}</div>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <strong>Descripción:</strong>
+          {ticket[0].ticketInfo.descripcion}
+        </div>
+        <div><strong>Navegador:</strong> {ticket[0].ticketInfo.navegador}</div>
+        <div><strong>Impacto:</strong> {ticket[0].ticketInfo.impacto}</div>
+        <div>
+          <strong>Solución tentativa:</strong>
+          {ticket[0].ticketInfo.solucion}
+        </div>
+        <div>
+          <strong>Detalle del problema:</strong>
+          {ticket[0].ticketInfo.detalle}
+        </div>
+        <div>
+          <strong>Información adicional:</strong>
+          {ticket[0].ticketInfo.adicional}
+        </div>
       </div>
     </div>
   </div>

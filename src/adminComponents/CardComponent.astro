@@ -16,11 +16,19 @@ function textoCorto(text: any, maxLength: any) {
   <div class="flex-grow">
     <p class="text-gray-700 text-base">
       <strong>Prioridad:</strong>
-      {
-        ticket.ticketInfo.prioridad
-          ? textoCorto(ticket.ticketInfo.prioridad, 20)
-          : null
-      }
+      <span
+      class={`inline-flex items-center px-3 py-1 text-sm font-medium rounded-full cursor-pointer ${
+        ticket.ticketInfo.prioridad.toUpperCase() === "BAJA"
+          ? "bg-blue-500 text-white"
+          : ticket.ticketInfo.prioridad.toUpperCase() === "MEDIA"
+            ? "bg-yellow-500 text-black"
+            : ticket.ticketInfo.prioridad.toUpperCase() === "ALTA"
+              ? "bg-red-400 text-black"
+              : "bg-green-500 text-white"
+      }`}
+    >
+      {ticket.ticketInfo.prioridad}
+    </span>
     </p>
     <p class="text-gray-700 text-base">
       <strong>Contacto:</strong>
@@ -31,78 +39,14 @@ function textoCorto(text: any, maxLength: any) {
       }
     </p>
     <p class="text-gray-700 text-base">
-      <strong>Descripción:</strong>
-      {
-        ticket.ticketInfo.descripcion
-          ? textoCorto(ticket.ticketInfo.descripcion, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Fecha y hora:</strong>
-      {ticket.ticketInfo.fecha ? textoCorto(ticket.ticketInfo.fecha, 20) : null}
-    </p>
-    <p class="text-gray-700 text-base">
       <strong>Dispositivo:</strong>
       {ticket.ticketInfo.hora ? textoCorto(ticket.ticketInfo.hora, 20) : null}
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Navegador:</strong>
-      {
-        ticket.ticketInfo.navegador
-          ? textoCorto(ticket.ticketInfo.navegador, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Sistema operativo:</strong>
-      {ticket.ticketInfo.so ? textoCorto(ticket.ticketInfo.so, 20) : null}
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Impacto:</strong>
-      {
-        ticket.ticketInfo.impacto
-          ? textoCorto(ticket.ticketInfo.impacto, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Solución tentativa:</strong>
-      {
-        ticket.ticketInfo.solucion
-          ? textoCorto(ticket.ticketInfo.solucion, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Detalle del problema:</strong>
-      {
-        ticket.ticketInfo.detalle
-          ? textoCorto(ticket.ticketInfo.detalle, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Información adicional:</strong>
-      {
-        ticket.ticketInfo.adicional
-          ? textoCorto(ticket.ticketInfo.adicional, 20)
-          : null
-      }
     </p>
     <p class="text-gray-700 text-base">
       <strong>Teléfono:</strong>
       {
         ticket.ticketInfo.telefono
           ? textoCorto(ticket.ticketInfo.telefono, 20)
-          : null
-      }
-    </p>
-    <p class="text-gray-700 text-base">
-      <strong>Correo:</strong>
-      {
-        ticket.ticketInfo.correo
-          ? textoCorto(ticket.ticketInfo.correo, 20)
           : null
       }
     </p>

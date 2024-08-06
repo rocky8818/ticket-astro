@@ -34,6 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
         ticketNumber:  randNumber.toString(),
         resumen: `${contacto}, de ${empresa} tiene el siguiente problema: ${descripcion}. A la empresa le afecta de la sieguiente manera ${impacto}, calificando el problema como prioridad ${prioridad}. El problema sucedio en un ${dispositivo}, con ${so}. El cliente dejó la siguiente información: ${adicional}.`,
         ticketInfo: data,
+        ticketState: 'Abierto'
     }
 
     // Insertar los datos en la base de datos

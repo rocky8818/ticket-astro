@@ -7,6 +7,7 @@ const tickets = defineTable({
     ticketNumber: column.text(),
     resumen: column.text(),
     ticketInfo: column.json(),
+    ticketState: column.text(),
   }
 })
 

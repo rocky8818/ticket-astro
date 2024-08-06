@@ -43,6 +43,8 @@ export async function POST(context: APIContext): Promise<Response> {
     const prioridad = formData.get('prioridad')
     const adicional = formData.get('adicional')
     const imagen = formData.get("image");
+    const from = 'Website'
+    const estado = 'Abierto'
     console.log(imagen)
 
 
@@ -56,7 +58,7 @@ export async function POST(context: APIContext): Promise<Response> {
     }
 
     const ticketInfo = {
-        empresa, contacto, correo, telefono, descripcion, fecha, hora, detalle, os, navegador, dispositivo, impacto, solucion, prioridad, adicional
+        empresa, contacto, correo, telefono, descripcion, fecha, hora, detalle, os, navegador, dispositivo, impacto, solucion, prioridad, adicional, estado, from
     }
 
     const resumen = `\n*Prioridad*: ${prioridad}\n*Contacto*: ${contacto} de ${empresa}\n*Descripción*: ${descripcion}\n*Fecha y hora*: ${fecha} a las ${hora}\n*Dispositivo*: ${dispositivo}\n*Navegador*: ${navegador}\n*Sistema operativo*: ${os}\n*Impacto*: ${impacto}\n*Solución tentativa*: ${solucion}\n*Detalle del problema*: ${detalle}\n*Información adicional*: ${adicional}\n*Teléfono*: ${telefono}\n*Correo*: ${correo}`;
@@ -67,6 +69,7 @@ export async function POST(context: APIContext): Promise<Response> {
         ticketNumber: prevTicket == '0' ? randNumber.toString() : prevTicket!.split('-')[0] + '-' + aggregate,
         resumen,
         ticketInfo,
+        ticketState : 'Abierto'
     }
 
     await db.insert(tickets).values([newTicket]);

@@ -1,3 +1,7 @@
+---
+const { w_header } = Astro.props;
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -6,6 +10,46 @@
     <title>Tickets CID</title>
   </head>
   <body style="background-color: rgb(236, 243, 248);">
-    <slot />
+    {
+      w_header ? (
+        <header class="bg-gradient-to-r from-[#FF7E5F] to-[#D6A4A4] text-white">
+          <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold">Soporte Cid</div>
+            <div>
+              <ul class="flex space-x-4">
+                <li>
+                  <a href="/admin/allreports" class="hover:underline">
+                    Todos los Tickets
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/abiertos" class="hover:underline">
+                    Tickets Abiertos
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/pausados" class="hover:underline">
+                    Tickets Pausados
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/resueltos" class="hover:underline">
+                    Tickets Resueltos
+                  </a>
+                </li>
+                <li>
+                  <a href="/admin/cerrados" class="hover:underline">
+                    Tickets Cerrados
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      ) : null
+    }
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
